@@ -1,6 +1,9 @@
 package models;
 
+import managers.CollectionManager;
 import utility.Element;
+
+import java.util.HashSet;
 import java.util.Objects;
 
 public class Vehicle extends Element {
@@ -15,7 +18,7 @@ public class Vehicle extends Element {
     private Float fuelConsumption; //Поле не может быть null, Значение поля должно быть больше 0
     private VehicleType type; //Поле может быть null
 
-    public Vehicle(String name, Coordinates coordinates, java.util.Date creationDate, float enginePower, Long capacity, Float fuelConsumption, VehicleType type){
+    public Vehicle(String name, Coordinates coordinates, java.util.Date creationDate, float enginePower, Long capacity, Float fuelConsumption, VehicleType type) {
         this.id = nextId;
         this.capacity = capacity;
         this.name = name;
@@ -25,8 +28,9 @@ public class Vehicle extends Element {
         this.fuelConsumption = fuelConsumption;
         this.type = type;
     }
+
     @Override
-    public boolean validate(){
+    public boolean validate() {
         if (id <= 0) return false;
         if (name == null || name.isEmpty()) return false;
         if (coordinates == null) return false;
@@ -36,7 +40,7 @@ public class Vehicle extends Element {
         return (fuelConsumption != null && fuelConsumption > 0);
     }
 
-    public void update(Vehicle vehicle){
+    public void update(Vehicle vehicle) {
         this.name = vehicle.name;
         this.coordinates = vehicle.coordinates;
         this.creationDate = vehicle.creationDate;
@@ -46,41 +50,52 @@ public class Vehicle extends Element {
         this.capacity = vehicle.capacity;
     }
 
-    public static void touchNextId(){
+    public static void touchNextId() {
         nextId++;
     }
+
     @Override
-    public int getId(){
+    public int getId() {
         return id;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public Coordinates getCoordinates(){
+
+    public Coordinates getCoordinates() {
         return coordinates;
     }
-    public java.util.Date getCreationDate(){
+
+    public java.util.Date getCreationDate() {
         return creationDate;
     }
-    public float getEnginePower(){
+
+    public float getEnginePower() {
         return enginePower;
     }
-    public Long getCapacity(){
+
+    public Long getCapacity() {
         return capacity;
     }
-    public Float getFuelConsumption(){
+
+    public Float getFuelConsumption() {
         return fuelConsumption;
     }
-    public VehicleType getType(){
+
+    public VehicleType getType() {
         return type;
     }
+
     @Override
-    public int compareTo(Element element){
+    public int compareTo(Element element) {
         return this.id - element.getId();
     }
-    public int compareTo(Vehicle vehicle){
+
+    public int compareTo(Vehicle vehicle) {
         return this.capacity.compareTo(vehicle.getCapacity());
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,6 +110,7 @@ public class Vehicle extends Element {
     public int hashCode() {
         return Objects.hash(id, name, coordinates, creationDate, capacity, enginePower, fuelConsumption, type);
     }
+
     @Override
     public String toString() {
         String info = "";
@@ -103,10 +119,26 @@ public class Vehicle extends Element {
         info += "\n Название: " + name;
         info += "\n Местоположение: " + coordinates;
         info += "\n Вместимось: " + capacity;
-        info += "\n partNumber: " + ((partNumber == null) ? null : "'" + partNumber + "'");
-        info += "\n Единица измерения: " + unitOfMeasure;
-        info += "\n Производитель:\n    " + manufacturer;
+        info += "\n Тип: " + ((type == null) ? null : "'" + type + "'");
+        info += "\n Мощность двигателя: " + enginePower;
+        info += "\n Потребление топлива:    " + fuelConsumption;
         return info;
-
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+    /**
+     * Обновляет указатель следующего ID
+     * @param collectionManager манагер коллекций
+     */
+    public static void updateNextId(CollectionManager collectionManager) {
+        var maxId = collectionManager
+                .getCollection()
+                .stream().filter(Objects::nonNull)
+                .map(Vehicle::getId)
+                .mapToInt(Integer::intValue).max().orElse(0);
+        nextId = maxId + 1;
+    }
 }
+
 

@@ -1,6 +1,6 @@
 package utility.console;
 
-public class StandardConsole implements Console{
+public abstract class StandardConsole implements Console{
     private final static String PS1 = "$ ";
     private final static String PS2 = "> ";
     public void print(Object obj){
@@ -9,5 +9,6 @@ public class StandardConsole implements Console{
     public void println(Object obj){
         System.out.println(obj);
     }
+
 
 }
