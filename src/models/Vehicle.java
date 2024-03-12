@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 
 public class Vehicle extends Element {
-    private static int nextId = 1;
+    private static int nextId = 0;
 
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -19,7 +19,7 @@ public class Vehicle extends Element {
     private VehicleType type; //Поле может быть null
 
     public Vehicle(String name, Coordinates coordinates, java.util.Date creationDate, float enginePower, Long capacity, Float fuelConsumption, VehicleType type) {
-        this.id = nextId;
+        this.id = touchNextId();
         this.capacity = capacity;
         this.name = name;
         this.coordinates = coordinates;
@@ -50,8 +50,8 @@ public class Vehicle extends Element {
         this.capacity = vehicle.capacity;
     }
 
-    public static void touchNextId() {
-        nextId++;
+    public static int touchNextId() {
+        return nextId++;
     }
 
     @Override
@@ -127,17 +127,13 @@ public class Vehicle extends Element {
     public void setId(int id){
         this.id = id;
     }
-    /**
-     * Обновляет указатель следующего ID
-     * @param collectionManager манагер коллекций
-     */
-    public static void updateNextId(CollectionManager collectionManager) {
-        var maxId = collectionManager
-                .getCollection()
-                .stream().filter(Objects::nonNull)
+
+    public static void updateIdPoint(HashSet<Vehicle> collection) {
+        nextId = collection.stream()
+                .filter(Objects::nonNull)
                 .map(Vehicle::getId)
-                .mapToInt(Integer::intValue).max().orElse(0);
-        nextId = maxId + 1;
+                .mapToInt(Integer::intValue)
+                .max().orElse(0);
     }
 }
 
