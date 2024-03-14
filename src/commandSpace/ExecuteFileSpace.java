@@ -25,7 +25,7 @@ public class ExecuteFileSpace implements Inputable{
         int nextByte;
         while ((nextByte = bf.read()) != -1) {
             char ch = (char) nextByte;
-            if (ch == '\n') {
+            if (ch == '\n' || ch == '\r') {
                 break; // Прекращаем чтение при обнаружении символа новой строки
             }
             res.append(ch);
