@@ -4,19 +4,19 @@ import utility.Validatable;
 import java.util.Objects;
 
 public class Coordinates implements Validatable {
-    private Integer x; //Поле не может быть null
+    private Long x; //Поле не может быть null
     private Float y; //Поле не может быть null
-    public Coordinates(int x, float y){
+    public Coordinates(long x, float y){
         this.x = x;
         this.y = y;
     }
-    public void setX(int x){
+    public void setX(long x){
         this.x = x;
     }
     public void setY(float y){
         this.y = y;
     }
-    public int getX(){
+    public long getX(){
         return x;
     }
     public double getY(){
