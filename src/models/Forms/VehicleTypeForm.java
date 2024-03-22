@@ -28,7 +28,7 @@ public class VehicleTypeForm extends Form<VehicleType>{
             console.println("Введите транспортное средство");
             String inputLine = scanner.nextLine().trim();
             if (inputLine.isEmpty()) {
-                console.printError("Оружие не может быть null");
+                console.printError("Транспортное средство не может быть null");
             } else {
                 try {
                     return VehicleType.valueOf(inputLine.toUpperCase(Locale.ROOT));
