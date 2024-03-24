@@ -1,6 +1,8 @@
 package commandSpace.commands;
 
 import commandSpace.Executable;
+import exceptions.ExitProgram;
+import exceptions.InvalidArguments;
 
 import java.util.Objects;
 
@@ -47,6 +49,6 @@ public class Command implements Executable {
     }
 
     @Override
-    public void execute(String args) {
+    public void execute(String args) throws InvalidArguments, ExitProgram {
     }
 }

@@ -135,6 +135,10 @@ public class Vehicle extends Element {
                 .mapToInt(Integer::intValue)
                 .max().orElse(0);
     }
+    public float getPrice(){
+        PriceElement<Long, Float> price = (x, y, capacity, enginePower, fuelConsumption) -> (float) Math.sqrt(x*x + y*y) + capacity + enginePower + fuelConsumption;
+        return price.getPriceElement(getCoordinates().getX(), getCoordinates().getY(), capacity, enginePower, fuelConsumption);
+    }
 }
 
 

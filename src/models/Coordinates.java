@@ -19,7 +19,7 @@ public class Coordinates implements Validatable {
     public long getX(){
         return x;
     }
-    public double getY(){
+    public float getY(){
         return y;
     }
     @Override

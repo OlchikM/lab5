@@ -1,6 +1,8 @@
 package commandSpace.commands;
 
 import commandSpace.Console;
+import exceptions.ExitProgram;
+import exceptions.InvalidArguments;
 import managers.CommandManager;
 
 public class Help extends Command {
@@ -11,7 +13,7 @@ public class Help extends Command {
         this.console = console;
         this.commandManager = commandManager;
     }
-    public void execute(String args){
+    public void execute(String args) throws InvalidArguments, ExitProgram {
         commandManager.getCommandsHashMap().forEach(command -> console.println(command.toString()));
     }
 }
