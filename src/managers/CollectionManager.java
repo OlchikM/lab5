@@ -11,6 +11,7 @@ public class CollectionManager {
     private LocalDateTime lastInitTime;
     private LocalDateTime initTime;
     private LocalDateTime lastSaveTime;
+    private float maxPrice;
 
     public static String formatTime(LocalDateTime localDateTime) {
         if (localDateTime == null) return null;
@@ -55,6 +56,8 @@ public class CollectionManager {
     public void addElement(Vehicle vehicle) {
         this.lastSaveTime = LocalDateTime.now();
         collection.add(vehicle);
+        float newPrice = vehicle.getPrice();
+        if (newPrice > maxPrice) maxPrice = newPrice;
     }
     public void removeElement(Vehicle vehicle) {
         collection.remove(vehicle);
@@ -66,6 +69,9 @@ public class CollectionManager {
         newVehicle.setId(id);
         addElement(newVehicle);
         this.lastSaveTime = LocalDateTime.now();
+    }
+    public float getMaxPrice(){
+        return maxPrice;
     }
 
 
