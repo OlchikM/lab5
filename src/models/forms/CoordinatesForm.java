@@ -1,4 +1,4 @@
-package models.Forms;
+package models.forms;
 
 import commandSpace.*;
 import exceptions.FileModeException;
