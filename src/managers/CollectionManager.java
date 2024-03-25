@@ -47,7 +47,7 @@ public class CollectionManager {
         lastInitTime = LocalDateTime.now();
     }
 
-    public Vehicle getById(int id) {
+    public Vehicle getById(long id) {
         for (Vehicle element : collection) {
             if (element.getId() == id) return element;
         }
@@ -72,6 +72,9 @@ public class CollectionManager {
     }
     public float getMaxPrice(){
         return maxPrice;
+    }
+    public boolean checkExistById(long id) {
+        return collection.stream().anyMatch(o -> o.getId() == id);
     }
 
 
