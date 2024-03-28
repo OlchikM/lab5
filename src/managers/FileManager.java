@@ -77,5 +77,22 @@ public class FileManager {
         }
         Vehicle.updateIdPoint(collectionManager.getCollection());
     }
+    public void saveObjects(){
+        String filePath = pathToFile;
+        if (filePath == null || filePath.isEmpty()){
+            console.printError("Пустой путь недопустим");
+            return;
+        } else {
+            console.println("Путь к файлу успешно получен");
+        }
+        try{
+            PrintWriter printWriter = new PrintWriter(new FileWriter(filePath));
+            printWriter.write(gson.toJson(collectionManager));
+        } catch (FileNotFoundException e){
+            console.printError("Файл не найден");
+        } catch (IOException e){
+            console.printError("Ошибка ввода/вывода");
+        }
+    }
 
 }
