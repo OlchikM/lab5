@@ -5,11 +5,13 @@ import utility.Element;
 
 import java.util.HashSet;
 import java.util.Objects;
+import com.google.gson.annotations.SerializedName;
 
 public class Vehicle extends Element {
     private static int nextId = 0;
 
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    @SerializedName("name")
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private java.util.Date creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически

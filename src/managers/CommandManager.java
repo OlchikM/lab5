@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import commandSpace.commands.Command;
+import exceptions.CommandRuntimeError;
+import exceptions.ExitProgram;
+import exceptions.InvalidArguments;
+import exceptions.NoSuchCommand;
 
 public class CommandManager {
     private final HashMap<String, Command> commandsHashMap = new HashMap<>();
@@ -28,6 +32,11 @@ public class CommandManager {
     }
     public List<String> getCommandHistory(){
         return this.commandHistory;
+    }
+    public void execute(String name, String args) throws ExitProgram, InvalidArguments, NoSuchCommand, CommandRuntimeError {
+        Command command  = commandsHashMap.get(name);
+        command.execute(args);
+
     }
 
 

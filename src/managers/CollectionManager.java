@@ -1,5 +1,6 @@
 package managers;
 
+import com.google.gson.annotations.SerializedName;
 import models.Vehicle;
 
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.HashSet;
 
 public class CollectionManager {
+    @SerializedName("Vehicles")
     private HashSet<Vehicle> collection = new HashSet<>();
     private LocalDateTime lastInitTime;
     private LocalDateTime initTime;
