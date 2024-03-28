@@ -21,7 +21,7 @@ public class AddElement extends Command{
         try{
             console.println("Начало создания экземпляра Vehicle...");
             collectionManager.addElement(new VehicleForm(console).build());
-            console.println("Экземпляр HumanBeing успешно создан!");
+            console.println("Экземпляр Vehicle успешно создан!");
         } catch (FileModeException e) { //InvalidForm
             console.printError("Поля невалидны => экземпляр не создан");
         }

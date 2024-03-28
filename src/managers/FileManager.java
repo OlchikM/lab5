@@ -1,11 +1,13 @@
 package managers;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import commandSpace.Printable;
 import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -20,7 +22,9 @@ public class FileManager {
     private final String pathToFile;
     private final Printable console;
     private final CollectionManager collectionManager;
-    private final Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+            .create();
 
     public FileManager(Console console, CollectionManager collectionManager, String pathToFile) {
         this.console = console;

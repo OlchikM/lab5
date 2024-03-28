@@ -22,7 +22,7 @@ public class FilterStartsWithName extends Command{
         console.println("Элементы значение поля name которых начинается с " + name + ":");
         collectionManager.getCollection().stream()
                 .filter(Objects :: nonNull)
-                .filter(i -> i.getName().startsWith(name))
+                .filter(i -> i.getName().startsWith(name.trim()))
                 .forEach(i -> console.println(i.getName()));
         }
 }
