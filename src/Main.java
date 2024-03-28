@@ -13,7 +13,7 @@ public class Main {
         Console console = new Console();
         CollectionManager collectionManager = new CollectionManager();
         CommandManager commandManager = new CommandManager();
-        FileManager fileManager = new FileManager(console, collectionManager, "C:/2/lab5/test.json");
+        FileManager fileManager = new FileManager(console, collectionManager, "C:/2/lab5/test2.json");
         try {
             if (fileManager.findFile()) {
                 fileManager.createObjects();

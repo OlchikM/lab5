@@ -61,7 +61,7 @@ public class FileManager {
             Type collectionType = new TypeToken<List<Vehicle>>(){}.getType();
             System.out.println(collectionType);
             System.out.println(text);
-            CollectionManager collectionManagerCreating = (CollectionManager) gson.fromJson(text, collectionType);
+            CollectionManager collectionManagerCreating = (CollectionManager) gson.fromJson(text, CollectionManager.class);
             System.out.println(collectionManagerCreating.toString());
             this.collectionManager.setLastSaveTime(collectionManagerCreating.getLastSaveTimeInDate());
             this.collectionManager.setLastInitTime(collectionManagerCreating.getInitTimeInDate());
@@ -95,6 +95,7 @@ public class FileManager {
         try{
             PrintWriter printWriter = new PrintWriter(new FileWriter(filePath));
             printWriter.write(gson.toJson(collectionManager));
+            printWriter.close();
         } catch (FileNotFoundException e){
             console.printError("Файл не найден");
         } catch (IOException e){
