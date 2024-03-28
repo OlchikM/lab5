@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "name": "Vehicle 1",
+        "coordinates": {
+            "x": 12.34,
+            "y": 56.78
+        },
+        "creationDate": "2024-03-28 15:30:35",
+        "enginePower": 250.5,
+        "capacity": 5000,
+        "fuelConsumption": 15.5,
+        "type": "BICYCLE"
+    },
+    {
+        "id": 2,
+        "name": "Vehicle 2",
+        "coordinates": {
+            "x": 98.76,
+            "y": 54.32
+        },
+        "creationDate": "2024-03-28 15:30:35",
+        "enginePower": 120.1,
+        "capacity": 1500,
+        "fuelConsumption": 10.0,
+        "type": "HOVERBOARD»"
+    }
+]

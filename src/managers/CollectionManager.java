@@ -102,7 +102,17 @@ public class CollectionManager {
     public void setLastSaveTime(LocalDateTime lastSaveTime) {
         this.lastSaveTime = lastSaveTime;
     }
+    @Override
+    public String toString() {
+        if (collection.isEmpty()) return "Коллекция пуста";
 
+        StringBuilder collectionInfo = new StringBuilder();
+        for (Vehicle vehicle : collection) {
+            collectionInfo.append(vehicle);
+            collectionInfo.append("\n");
+        }
+        return collectionInfo.toString();
+    }
 
 
 }

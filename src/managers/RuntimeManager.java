@@ -9,11 +9,11 @@ import exceptions.NoSuchCommand;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class RunTimeManager {
+public class RuntimeManager {
     private final Printable console;
     private final CommandManager commandManager;
 
-    public RunTimeManager(Printable console, CommandManager commandManager) {
+    public RuntimeManager(Printable console, CommandManager commandManager) {
         this.commandManager = commandManager;
         this.console = console;
     }

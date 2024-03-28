@@ -25,7 +25,7 @@ public class VehicleForm extends Form<Vehicle> {
         while (true){
             console.println("Введите имя:");
             String name = scanner.nextLine().trim();
-            if (askName().isEmpty()){
+            if (name.isEmpty()){
                 console.printError("Имя не может быть пустым");
                 if (Console.getFileMode()) throw new FileModeException();
             } else return name;

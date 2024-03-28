@@ -55,7 +55,10 @@ public class FileManager {
     public void createObjects() throws ExitProgram{
         try {
             Type collectionType = new TypeToken<List<Vehicle>>(){}.getType();
+            System.out.println(collectionType);
+            System.out.println(text);
             CollectionManager collectionManagerCreating = (CollectionManager) gson.fromJson(text, collectionType);
+            System.out.println(collectionManagerCreating.toString());
             this.collectionManager.setLastSaveTime(collectionManagerCreating.getLastSaveTimeInDate());
             this.collectionManager.setLastInitTime(collectionManagerCreating.getInitTimeInDate());
             if (collectionManagerCreating.getCollection() == null){

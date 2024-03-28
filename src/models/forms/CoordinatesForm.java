@@ -16,7 +16,7 @@ public class CoordinatesForm extends Form{
             this.scanner = new ConsoleInput();
         }
     }
-        private long askX(){
+        private Long askX(){
             while (true) {
                 console.println("Введите координату 'x' (тип long): ");
                 String inputLine = scanner.nextLine().trim();
@@ -42,7 +42,7 @@ public class CoordinatesForm extends Form{
     }
     @Override
     public Coordinates build(){
-        return new Coordinates(askX(), askX());
+        return new Coordinates(askX(), askY());
     }
 
 }
