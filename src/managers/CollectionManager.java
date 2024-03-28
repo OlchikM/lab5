@@ -3,7 +3,9 @@ package managers;
 import models.Vehicle;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashSet;
 
 public class CollectionManager {
@@ -12,6 +14,10 @@ public class CollectionManager {
     private LocalDateTime initTime;
     private LocalDateTime lastSaveTime;
     private float maxPrice;
+    public CollectionManager(){
+        this.initTime = LocalDateTime.now();
+        this.lastSaveTime = null;
+    }
 
     public static String formatTime(LocalDateTime localDateTime) {
         if (localDateTime == null) return null;
@@ -20,6 +26,10 @@ public class CollectionManager {
             return localDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         }
         return localDateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"));
+    }
+    public static String formatTime(Date date) {
+        LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return formatTime(localDateTime);
     }
 
     public HashSet<Vehicle> getCollection() {
@@ -76,6 +86,21 @@ public class CollectionManager {
     public boolean checkExistById(long id) {
         return collection.stream().anyMatch(o -> o.getId() == id);
     }
+    public LocalDateTime getInitTimeInDate() {
+        return initTime;
+    }
+    public LocalDateTime getLastSaveTimeInDate() {
+        return lastSaveTime;
+    }
+
+    public void setLastInitTime(LocalDateTime lastInitTime) {
+        this.lastInitTime = lastInitTime;
+    }
+
+    public void setLastSaveTime(LocalDateTime lastSaveTime) {
+        this.lastSaveTime = lastSaveTime;
+    }
+
 
 
 }
