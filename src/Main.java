@@ -7,13 +7,20 @@ import managers.CommandManager;
 import managers.*;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Console console = new Console();
         CollectionManager collectionManager = new CollectionManager();
         CommandManager commandManager = new CommandManager();
-        FileManager fileManager = new FileManager(console, collectionManager, "C:/2/lab5/test2.json");
+        //Scanner yy = new Scanner(System.in);
+        //console.println("Введите путь к файлу + файл (желательно без ошибок)");
+        if (args.length == 0){
+            console.println("Программа завершена экстренно");
+            return;
+        }
+        FileManager fileManager = new FileManager(console, collectionManager, args[0].trim());
         try {
             if (fileManager.findFile()) {
                 fileManager.createObjects();

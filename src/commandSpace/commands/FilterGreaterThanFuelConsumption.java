@@ -11,7 +11,7 @@ public class FilterGreaterThanFuelConsumption extends Command{
     private final Console console;
     private final CollectionManager collectionManager;
     public FilterGreaterThanFuelConsumption(Console console, CollectionManager collectionManager){
-        super("filter_greater_than_impact_speed", "fuelConsumption",
+        super("filter_greater_than_fuel_consumption", "fuelConsumption",
                 "вывести элементы значение поля fuelConsumption (float) которых больше заданного");
         this.console = console;
         this.collectionManager = collectionManager;

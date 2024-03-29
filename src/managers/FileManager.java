@@ -7,7 +7,9 @@ import com.google.gson.reflect.TypeToken;
 import commandSpace.Printable;
 import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -23,8 +25,8 @@ public class FileManager {
     private final Printable console;
     private final CollectionManager collectionManager;
     private final Gson gson = new GsonBuilder()
-            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
-            .create();
+            .setDateFormat("dd/MM/yyyy HH:mm")
+            .setPrettyPrinting().create();
 
     public FileManager(Console console, CollectionManager collectionManager, String pathToFile) {
         this.console = console;
@@ -58,11 +60,10 @@ public class FileManager {
     }
     public void createObjects() throws ExitProgram{
         try {
-            Type collectionType = new TypeToken<List<Vehicle>>(){}.getType();
-            System.out.println(collectionType);
-            System.out.println(text);
-            CollectionManager collectionManagerCreating = (CollectionManager) gson.fromJson(text, CollectionManager.class);
-            System.out.println(collectionManagerCreating.toString());
+            Type collectionType = new TypeToken<HashSet<Vehicle>>(){}.getType();
+            HashSet<Vehicle> hashSet = gson.fromJson(text, collectionType);
+            CollectionManager collectionManagerCreating = new CollectionManager();
+            collectionManagerCreating.setCollection(hashSet);
             this.collectionManager.setLastSaveTime(collectionManagerCreating.getLastSaveTimeInDate());
             this.collectionManager.setLastInitTime(collectionManagerCreating.getInitTimeInDate());
             if (collectionManagerCreating.getCollection() == null){
@@ -79,6 +80,7 @@ public class FileManager {
             this.collectionManager.setLastSaveTime(collectionManagerCreating.getLastSaveTimeInDate());
         } catch (JsonSyntaxException e){ // InvalidForm |
             console.printError("Объекты из файла невалидны");
+            e.printStackTrace();
         } catch(JsonParseException e){
             console.printError("Нарушена структура json файла с данными");
         }

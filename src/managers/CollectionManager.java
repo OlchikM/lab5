@@ -53,6 +53,9 @@ public class CollectionManager {
     public int getSize() {
         return collection.size();
     }
+    public void setCollection(HashSet<Vehicle> e){
+        this.collection = e;
+    }
 
     public void clear() {
         collection.clear();

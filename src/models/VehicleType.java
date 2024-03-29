@@ -10,7 +10,7 @@ public enum VehicleType {
     public static String list(){
         StringBuilder resultStr = new StringBuilder();
         for (var names : values()) {
-            resultStr.append(names.name()).append("/n");
+            resultStr.append(names.name()).append("\n");
         }
         return resultStr.toString();
     }

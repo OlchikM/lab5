@@ -35,6 +35,9 @@ public class CommandManager {
     }
     public void execute(String name, String args) throws ExitProgram, InvalidArguments, NoSuchCommand, CommandRuntimeError {
         Command command  = commandsHashMap.get(name);
+        if (command == null) {
+            throw new NoSuchCommand("Такой команды не существует. Попробуйте еще разок");
+        }
         command.execute(args);
 
     }
