@@ -1,2 +1,6 @@
-help
-show
+add
+Olchik
+34
+34
+34
+PLANE

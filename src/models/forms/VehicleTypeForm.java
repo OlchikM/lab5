@@ -2,6 +2,7 @@ package models.forms;
 
 import commandSpace.*;
 import exceptions.FileModeException;
+import exceptions.InvalidForm;
 import models.VehicleType;
 
 import java.util.Locale;
@@ -21,12 +22,17 @@ public class VehicleTypeForm extends Form<VehicleType>{
         }
     }
     @Override
-    public VehicleType build(){
+    public VehicleType build() throws InvalidForm {
         while (true){
             console.println("Возможные варианты транспортрных средств:");
             console.println(VehicleType.list());
+            String inputLine = "";
             console.println("Введите транспортное средство");
-            String inputLine = scanner.nextLine().trim();
+            try {
+                inputLine = scanner.nextLine().trim();
+            } catch (NullPointerException e){
+                throw new InvalidForm();
+            }
             if (inputLine.isEmpty()) {
                 console.printError("Транспортное средство не может быть null");
             } else {

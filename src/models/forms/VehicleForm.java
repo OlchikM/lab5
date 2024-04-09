@@ -92,7 +92,7 @@ public class VehicleForm extends Form<Vehicle> {
         }
     }
 
-    private VehicleType askVehicleType() {
+    private VehicleType askVehicleType() throws InvalidForm{
         return new VehicleTypeForm(console).build();
     }
 
