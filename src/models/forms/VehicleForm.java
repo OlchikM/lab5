@@ -23,25 +23,30 @@ public class VehicleForm extends Form<Vehicle> {
         }
     }
 
-    private String askName() {
+    private String askName() throws InvalidForm {
         while (true) {
             console.println("Введите имя:");
             String name = scanner.nextLine().trim();
-            if (name.isEmpty()) {
+            if (name.isEmpty() || name == null) {
                 console.printError("Имя не может быть пустым");
                 if (Console.getFileMode()) throw new FileModeException();
             } else return name;
         }
     }
 
-    private Coordinates askCoordinates() {
+    private Coordinates askCoordinates() throws InvalidForm{
         return new CoordinatesForm(console).build();
     }
 
-    private float askEnginePower() {
+    private float askEnginePower() throws InvalidForm {
         while (true) {
             console.println("Введите мощность двигателя (тип float > 0):");
-            String inputLine = scanner.nextLine().trim();
+            String inputLine = "";
+            try {
+                inputLine = scanner.nextLine().trim();
+            } catch (NullPointerException e){
+                throw new InvalidForm();
+            }
             try {
                 float enginePower = Float.parseFloat(inputLine);
                 if (enginePower <= 0) {
@@ -56,10 +61,15 @@ public class VehicleForm extends Form<Vehicle> {
         }
     }
 
-    private Long askCapacity() {
+    private Long askCapacity() throws InvalidForm {
         while (true) {
             console.println("Введите вместимость (тип long > 0):");
-            String inputLine = scanner.nextLine().trim();
+            String inputLine = "";
+            try {
+                inputLine = scanner.nextLine().trim();
+            } catch (NullPointerException e){
+                throw new InvalidForm();
+            }
             try {
                 long capacity = Long.parseLong(inputLine);
                 if (capacity <= 0) {
@@ -74,10 +84,15 @@ public class VehicleForm extends Form<Vehicle> {
         }
     }
 
-    private float askFuelConsumption() {
+    private float askFuelConsumption() throws InvalidForm {
         while (true) {
             console.println("Введите потребление топлива (тип float > 0):");
-            String inputLine = scanner.nextLine().trim();
+            String inputLine = "";
+            try {
+               inputLine = scanner.nextLine().trim();
+            } catch (NullPointerException e){
+                throw new InvalidForm();
+            }
             try {
                 float fuelConsumption = Float.parseFloat(inputLine);
                 if (fuelConsumption <= 0) {

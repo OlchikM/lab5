@@ -2,7 +2,10 @@ package models.forms;
 
 import commandSpace.*;
 import exceptions.FileModeException;
+import exceptions.InvalidForm;
 import models.Coordinates;
+
+import static java.lang.Float.NaN;
 
 public class CoordinatesForm extends Form{
     private final Printable console;
@@ -16,10 +19,15 @@ public class CoordinatesForm extends Form{
             this.scanner = new ConsoleInput();
         }
     }
-        private Long askX(){
+        private Long askX() throws InvalidForm {
             while (true) {
                 console.println("Введите координату 'x' (тип long): ");
-                String inputLine = scanner.nextLine().trim();
+                String inputLine = "";
+                try {
+                    inputLine = scanner.nextLine().trim();
+                } catch (NullPointerException e){
+                    throw new InvalidForm();
+                }
                 try{
                    return  Long.parseLong(inputLine);
                 } catch (NumberFormatException e){
@@ -28,12 +36,22 @@ public class CoordinatesForm extends Form{
             }
         }
     }
-    private float askY(){
+    private float askY() throws InvalidForm {
         while (true) {
             console.println("Введите координату 'y' (тип float): ");
-            String inputLine = scanner.nextLine().trim();
+            String inputLine = "";
+            try {
+                inputLine = scanner.nextLine().trim();
+            } catch (NullPointerException e){
+                throw new InvalidForm();
+            }
             try{
-                return  Float.parseFloat(inputLine);
+                Float inputline = Float.parseFloat(inputLine);
+                if (Float.isNaN(inputline) || Float.isInfinite(inputline)){
+                    throw new NumberFormatException();
+                } else {
+                    return  Float.parseFloat(inputLine);
+                }
             } catch (NumberFormatException e){
                 console.printError("'y' должно быть числом типа float");
                 if (Console.getFileMode()) throw  new FileModeException();
@@ -41,7 +59,7 @@ public class CoordinatesForm extends Form{
         }
     }
     @Override
-    public Coordinates build(){
+    public Coordinates build() throws InvalidForm{
         return new Coordinates(askX(), askY());
     }
 
