@@ -2,6 +2,7 @@ package models.forms;
 
 import commandSpace.*;
 import exceptions.FileModeException;
+import exceptions.InvalidForm;
 import models.Coordinates;
 import models.Vehicle;
 import models.VehicleType;
@@ -21,21 +22,23 @@ public class VehicleForm extends Form<Vehicle> {
             this.scanner = new ConsoleInput();
         }
     }
-    private String askName(){
-        while (true){
+
+    private String askName() {
+        while (true) {
             console.println("Введите имя:");
             String name = scanner.nextLine().trim();
-            if (name.isEmpty()){
+            if (name.isEmpty()) {
                 console.printError("Имя не может быть пустым");
                 if (Console.getFileMode()) throw new FileModeException();
             } else return name;
         }
     }
 
-    private Coordinates askCoordinates(){
+    private Coordinates askCoordinates() {
         return new CoordinatesForm(console).build();
     }
-    private float askEnginePower(){
+
+    private float askEnginePower() {
         while (true) {
             console.println("Введите мощность двигателя (тип float > 0):");
             String inputLine = scanner.nextLine().trim();
@@ -48,11 +51,12 @@ public class VehicleForm extends Form<Vehicle> {
                 return enginePower;
             } catch (NumberFormatException e) {
                 console.printError("Мощность двигателя должна быть числом типа float");
-                if (Console.getFileMode()) throw  new FileModeException();
+                if (Console.getFileMode()) throw new FileModeException();
             }
         }
     }
-    private Long askCapacity(){
+
+    private Long askCapacity() {
         while (true) {
             console.println("Введите вместимость (тип long > 0):");
             String inputLine = scanner.nextLine().trim();
@@ -65,11 +69,12 @@ public class VehicleForm extends Form<Vehicle> {
                 return capacity;
             } catch (NumberFormatException e) {
                 console.printError("Вместимость должна быть числом типа long");
-                if (Console.getFileMode()) throw  new FileModeException();
+                if (Console.getFileMode()) throw new FileModeException();
             }
         }
     }
-    private float askFuelConsumption(){
+
+    private float askFuelConsumption() {
         while (true) {
             console.println("Введите потребление топлива (тип float > 0):");
             String inputLine = scanner.nextLine().trim();
@@ -82,15 +87,17 @@ public class VehicleForm extends Form<Vehicle> {
                 return fuelConsumption;
             } catch (NumberFormatException e) {
                 console.printError("Потребление топлива должно быть числом типа float");
-                if (Console.getFileMode()) throw  new FileModeException();
+                if (Console.getFileMode()) throw new FileModeException();
             }
         }
     }
-    private VehicleType askVehicleType(){
+
+    private VehicleType askVehicleType() {
         return new VehicleTypeForm(console).build();
     }
+
     @Override
-    public Vehicle build(){
+    public Vehicle build() throws InvalidForm {
         return new Vehicle(
                 askName(),
                 askCoordinates(),
@@ -103,8 +110,4 @@ public class VehicleForm extends Form<Vehicle> {
         );
 
     }
-
-
-
-
 }
