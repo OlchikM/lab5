@@ -6,8 +6,10 @@ import models.Vehicle;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class CollectionManager {
     @SerializedName("Vehicles")
@@ -75,7 +77,17 @@ public class CollectionManager {
         if (newPrice > maxPrice) maxPrice = newPrice;
     }
     public void removeElement(Vehicle vehicle) {
+        Float pr = vehicle.getPrice();
         collection.remove(vehicle);
+        if (maxPrice == pr) {
+            Float k = (float) 0;
+            for (Vehicle i : collection){
+                if (i.getPrice() > k) {
+                    k = i.getPrice();
+                }
+            }
+            maxPrice = k;
+        }
         this.lastSaveTime = LocalDateTime.now();
     }
     public void editById(int id, Vehicle newVehicle) {
