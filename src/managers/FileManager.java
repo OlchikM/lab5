@@ -78,7 +78,7 @@ public class FileManager {
                 this.collectionManager.addElement(vehicle);
             }
             this.collectionManager.setLastSaveTime(collectionManagerCreating.getLastSaveTimeInDate());
-        } catch (JsonSyntaxException e){ // InvalidForm |
+        } catch (JsonSyntaxException | InvalidForm e){ // InvalidForm |
             console.printError("Объекты из файла невалидны");
             e.printStackTrace();
         } catch(JsonParseException e){

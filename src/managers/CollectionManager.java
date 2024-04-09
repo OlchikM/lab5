@@ -1,6 +1,7 @@
 package managers;
 
 import com.google.gson.annotations.SerializedName;
+import exceptions.InvalidForm;
 import models.Vehicle;
 
 import java.time.LocalDateTime;
@@ -55,7 +56,7 @@ public class CollectionManager {
     public int getSize() {
         return collection.size();
     }
-    public void setCollection(HashSet<Vehicle> e){
+    public void setCollection(HashSet<Vehicle> e) throws InvalidForm{
         this.collection = e;
     }
 
@@ -70,7 +71,7 @@ public class CollectionManager {
         }
         return null;
     }
-    public void addElement(Vehicle vehicle) {
+    public void addElement(Vehicle vehicle) throws InvalidForm {
         this.lastSaveTime = LocalDateTime.now();
         collection.add(vehicle);
         float newPrice = vehicle.getPrice();
@@ -90,7 +91,7 @@ public class CollectionManager {
         }
         this.lastSaveTime = LocalDateTime.now();
     }
-    public void editById(int id, Vehicle newVehicle) {
+    public void editById(int id, Vehicle newVehicle) throws InvalidForm {
         Vehicle oldVehicle = getById(id);
         removeElement(oldVehicle);
         newVehicle.setId(id);

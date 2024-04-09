@@ -33,7 +33,7 @@ public class VehicleTypeForm extends Form<VehicleType>{
             } catch (NullPointerException e){
                 throw new InvalidForm();
             }
-            if (inputLine.isEmpty()) {
+            if (inputLine.isEmpty() || inputLine == null) {
                 console.printError("Транспортное средство не может быть null");
             } else {
                 try {
