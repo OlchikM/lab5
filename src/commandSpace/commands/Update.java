@@ -1,11 +1,8 @@
 package commandSpace.commands;
 
 import commandSpace.Console;
-import exceptions.ExitProgram;
-import exceptions.FileModeException;
-import exceptions.InvalidArguments;
+import exceptions.*;
 import managers.CollectionManager;
-import exceptions.NoSuchId;
 import models.Vehicle;
 import models.forms.VehicleForm;
 
@@ -31,7 +28,7 @@ public class Update extends Command {
             console.println("Экземпляр Vehicle успешно создан!");
         } catch (NoSuchId e) {
             console.printError("Нет элемента с таким id");
-        } catch (FileModeException e) { //InvalidForm |
+        } catch (FileModeException | InvalidForm e) { //InvalidForm |
             console.printError("Поля невалидны => экземпляр не создан");
         } catch (NumberFormatException e) {
             console.printError("id должен быть числом типа long");

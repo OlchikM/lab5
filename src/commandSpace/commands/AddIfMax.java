@@ -37,7 +37,7 @@ public class AddIfMax extends Command{
             } else {
                 console.println("Новый элемент меньше максимального");
             }
-        } catch (FileModeException e) { // | InvalidForm e) {
+        } catch (FileModeException | InvalidForm e) { // | InvalidForm e) {
             console.printError("Поля невалидны => экземпляр не создан");
         }
 
