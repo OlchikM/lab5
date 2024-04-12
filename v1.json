@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "name": "Vehicle 1",
+        "coordinates": {
+            "x": 2,
+            "y": 5
+        },
+        "creationDate": "28/07/2021 14:30",
+        "enginePower": 5,
+        "capacity": 5,
+        "fuelConsumption": 5,
+        "type": "PLANE"
+    },
+    {
+        "id": 2,
+        "name": "Vehicle 2",
+        "coordinates": {
+            "x": 980,
+            "y": 540.32
+        },
+        "creationDate": "28/08/2021 14:30",
+        "enginePower": 1200.1,
+        "capacity": 1500,
+        "fuelConsumption": 1990.0,
+        "type": "HOVERBOARD"
+    }
+]

@@ -28,14 +28,15 @@ public class AddIfMax extends Command{
             console.println("Начало создания экземпляра Vehicle...");
             Vehicle vehicle = new VehicleForm(console).build();
             console.println("Экземпляр Vehicle успешно создан!");
-            if (vehicle.compareTo(collectionManager.getCollection().stream()
+            Vehicle vehMax = ((collectionManager.getCollection().stream()
                     .filter(Objects::nonNull)
                     .max(Vehicle::compareTo)
-                    .orElse(null)) >= 1){
+                    .orElse(null)));
+            if ((vehMax == null) || ((vehMax != null) && (vehicle.compareTo(vehMax) > 0) )) {
                 collectionManager.addElement(vehicle);
                 console.println("Объект успешно добавлен");
             } else {
-                console.println("Новый элемент меньше максимального");
+                console.println("Новый элемент меньше максимального или коллекция пуста");
             }
         } catch (FileModeException | InvalidForm e) { // | InvalidForm e) {
             console.printError("Поля невалидны => экземпляр не создан");
