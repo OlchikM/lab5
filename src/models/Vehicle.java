@@ -73,7 +73,7 @@ public class Vehicle extends Element {
         return creationDate;
     }
 
-    public float getEnginePower() {
+    public Float getEnginePower() {
         return enginePower;
     }
 
