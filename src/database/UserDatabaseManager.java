@@ -9,9 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserDataBaseManager {
+public class UserDatabaseManager {
     private final ConnectionManager connectionManager;
-    public UserDataBaseManager(ConnectionManager connectionManager){
+    public UserDatabaseManager(ConnectionManager connectionManager){
         this.connectionManager = connectionManager;
     }
     public Connection getConnection() throws SQLException {
